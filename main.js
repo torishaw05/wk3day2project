@@ -96,17 +96,34 @@ let formData = [
 
 
 // -------- Your Code Goes Below this Line --------
-
-
 for (var i = 0; i < formData.length; i++) {
   if (formData[i].options.length > 0 ) {
-
-  } else {
-    let input = document.createElement("input");
-
+    let select = document.createElement(formData[i].type);
+    let selectPlaceholder = document.createElement("option");
+    select.setAttribute("type", formData[i].type);
+    selectPlaceholder.textContent = formData[i].label;
+    select.appendChild(selectPlaceholder);
+    for (var o = 0; o < formData[i].options.length; o++){
+    let selectPlaceholder = document.createElement("option");
+    selectPlaceholder.textContent = (formData[i].options[o].label);
+    select.appendChild(selectPlaceholder);
+    }
+    select.setAttribute("id", formData[i].id);
+    select.setAttribute("value", formData[i].label);
+    document.getElementById('fields').appendChild(select);
+  }else {
+  if (formData[i].type == "textarea" ){
+    let input = document.createElement("textarea");
     input.setAttribute("type", formData[i].type);
-    input.setAttribute("placeholder", formData[i].type);
-    input.setAttribute("id", formData[i].type);
+    input.setAttribute("placeholder", formData[i].label);
+    input.setAttribute("id", formData[i].id);
+    document.getElementById('fields').appendChild(input);
+  }else {
+    let input = document.createElement("input");
+    input.setAttribute("type", formData[i].type);
+    input.setAttribute("placeholder", formData[i].label);
+    input.setAttribute("id", formData[i].id);
+    document.getElementById('fields').appendChild(input);
   }
 }
-formData.appendChild();
+}
